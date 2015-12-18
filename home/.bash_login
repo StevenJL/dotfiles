@@ -1,0 +1,107 @@
+# ~/.bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
+
+
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
+if [[ $- != *i* ]] ; then
+        # Shell is non-interactive.  Be done now!
+        return
+fi
+
+
+# Put your fun stuff here.
+alias git_rm='git ls-files --deleted -z | xargs -0 git rm'
+alias git_rb='git remote show $1'
+alias git_remote_del='git push $1 --delete $2'
+alias gdc='git diff --cached'
+alias git_update_ignore='git rm -r --cached .'
+
+git_comp(){
+  open "https://github.com/$1/compare/$2...$3" 
+}
+
+alias ct='ctags -R --exclude=.git --exclude=log --language-force=ruby . $( bundle list --paths )'
+alias dh='export DOCKER_HOST=tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376 && export DOCKER_CERT_PATH=/Users/stevenli/.boot2docker/certs/boot2docker-vm && export DOCKER_TLS_VERIFY=1'
+alias temp='vim "temp_$(date "+%Y_%m_%dT%H_%M_%S")"'
+alias diff_dir='diff -arq $1 $2'
+alias record='script "scripts/$(date "+%Y_%m_%dT%H_%M_%S")'
+alias erl_ver="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell" 
+
+alias proj_name='echo ${PWD##*/}'
+alias 32_or_64='uname -m'
+
+zip_proj(){
+  zip -r "$(proj_name)-$1-$(date "+%Y_%m_%dT%H_%M_%S")" *
+}
+
+mf (){
+  find ./ -name $1 2> /dev/null
+}
+
+mg (){
+  git grep -10 -p --heading --line-number --break --untracked "$1" 
+}
+
+mgng () {
+  grep --colour -n -r "$1" ./* 2> /dev/null
+}
+
+ppp (){
+  echo $PATH | tr ":" "\n" | sort | uniq
+}
+
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+source ~/.git-prompt.sh
+
+txtblk='\e[0;30m' # Black - Regular
+txtred='\e[0;31m' # Red
+txtgrn='\e[0;32m' # Green
+txtylw='\e[0;33m' # Yellow
+txtblu='\e[0;34m' # Blue
+txtpur='\e[0;35m' # Purple
+txtcyn='\e[0;36m' # Cyan
+txtwht='\e[0;37m' # White
+bldblk='\e[1;30m' # Black - Bold
+bldred='\e[1;31m' # Red
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+bldblu='\e[1;34m' # Blue
+bldpur='\e[1;35m' # Purple
+bldcyn='\e[1;36m' # Cyan
+bldwht='\e[1;37m' # White
+unkblk='\e[4;30m' # Black - Underline
+undred='\e[4;31m' # Red
+undgrn='\e[4;32m' # Green
+undylw='\e[4;33m' # Yellow
+undblu='\e[4;34m' # Blue
+undpur='\e[4;35m' # Purple
+undcyn='\e[4;36m' # Cyan
+undwht='\e[4;37m' # White
+bakblk='\e[40m'   # Black - Background
+bakred='\e[41m'   # Red
+bakgrn='\e[42m'   # Green
+bakylw='\e[43m'   # Yellow
+bakblu='\e[44m'   # Blue
+bakpur='\e[45m'   # Purple
+bakcyn='\e[46m'   # Cyan
+bakwht='\e[47m'   # White
+txtrst='\e[0m'    # Text Reset
+
+export PS1="\[$txtgrn\]\w:\[$txtblu\]\$(__git_ps1)\[$txtrst\]$ "
+export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
+export GOPATH="${HOME}/go"
+export ELIXIRPATH="${HOME}/elixir/bin"
+export PATH="/usr/local/go/bin:${GOPATH}/bin:${ELIXIRPATH}:$PATH"
+export EDITOR=vim
+
+source ~/.profile
