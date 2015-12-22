@@ -32,6 +32,7 @@ alias temp='vim "temp_$(date "+%Y_%m_%dT%H_%M_%S")"'
 alias diff_dir='diff -arq $1 $2'
 alias record='script "scripts/$(date "+%Y_%m_%dT%H_%M_%S")'
 alias erl_ver="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell" 
+alias start_redis="redis-server /usr/local/etc/redis.conf"
 
 alias proj_name='echo ${PWD##*/}'
 alias 32_or_64='uname -m'
