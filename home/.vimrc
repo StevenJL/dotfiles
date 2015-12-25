@@ -22,6 +22,7 @@ imap kj <ESC>
 vmap cc !pbcopy <CR>u
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+set pastetoggle=<F2>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
