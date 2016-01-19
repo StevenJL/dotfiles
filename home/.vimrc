@@ -1,5 +1,6 @@
 let mapleader = ","
 let NERDTreeShowHidden=1
+let g:ctrlp_max_files=0
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
