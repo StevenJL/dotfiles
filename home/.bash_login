@@ -26,6 +26,7 @@ git_comp(){
   open "https://github.com/$1/compare/$2...$3" 
 }
 
+# need to install exuberant-ctags first
 alias ct='ctags -R --exclude=.git --exclude=log --language-force=ruby . $( bundle list --paths )'
 alias dh='export DOCKER_HOST=tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376 && export DOCKER_CERT_PATH=/Users/stevenli/.boot2docker/certs/boot2docker-vm && export DOCKER_TLS_VERIFY=1'
 alias temp='vim "temp_$(date "+%Y_%m_%dT%H_%M_%S")"'
