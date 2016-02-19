@@ -1,0 +1,11 @@
+--ignore-dir=log
+--ignore-dir=vendor
+--ignore-dir=tmp
+--ignore-dir=public
+--ignore-file=is:tags
+--ignore-file=is:.byebug_history
+--ignore-file=is:CHANGELOG.md
+--ignore-file=match:temp_*
+--sort-files
+--color
+
