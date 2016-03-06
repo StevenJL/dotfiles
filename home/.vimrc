@@ -1,6 +1,10 @@
 let mapleader = ","
 let NERDTreeShowHidden=1
 let g:ctrlp_max_files=0
+if exists("g:ctrl_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/public/*,*/node_modules/*
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
