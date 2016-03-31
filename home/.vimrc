@@ -1,6 +1,7 @@
 let mapleader = ","
 let NERDTreeShowHidden=1
 let g:ctrlp_max_files=0
+let g:ruby_fold_lines_limit=200
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
@@ -39,4 +40,20 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 vnoremap # :s#^#\##<cr>
 vnoremap -# :s#^\###<cr>
+
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+
+function! RubyMethodFold(line)
+  let line_is_method_or_end = synIDattr(synID(a:line,1,0), 'name') == 'rubyMethodBlock'
+  let line_is_def = getline(a:line) =~ '\s*def '
+  let line_is_context = getline(a:line) =~ '\s*context '
+  let line_is_describe = getline(a:line) =~ '\s*describe '
+  return line_is_method_or_end || line_is_def || line_is_context || line_is_describe
+endfunction
+
+set foldexpr=RubyMethodFold(v:lnum)
+
 
