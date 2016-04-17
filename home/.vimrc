@@ -23,6 +23,7 @@ set noswapfile
 set splitbelow
 set splitright
 set t_Co=256
+set foldmethod=syntax
 colorscheme leo
 imap kj <ESC>
 vmap cc !pbcopy <CR>u
