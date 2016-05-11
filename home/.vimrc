@@ -56,4 +56,5 @@ endfunction
 
 set foldexpr=RubyMethodFold(v:lnum)
 
+autocmd BufWritePre * :%s/\s\+$//e
 
