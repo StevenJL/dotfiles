@@ -25,7 +25,7 @@ alias git_cont='git reset --soft $(git log | grep commit | head -2 | tail -1 | s
 
 
 git_comp(){
-  open "https://github.com/$1/compare/$2...$3" 
+  open "https://github.com/$1/compare/$2...$3"
 }
 
 # need to install exuberant-ctags first
@@ -34,7 +34,7 @@ alias dh='export DOCKER_HOST=tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):
 alias temp='vim "temp_$(date "+%Y_%m_%dT%H_%M_%S")"'
 alias diff_dir='diff -arq $1 $2'
 alias record='script "scripts/$(date "+%Y_%m_%dT%H_%M_%S")'
-alias erl_ver="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell" 
+alias erl_ver="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell"
 alias start_redis="redis-server /usr/local/etc/redis.conf"
 
 alias proj_name='echo ${PWD##*/}'
@@ -49,7 +49,7 @@ mf (){
 }
 
 mg (){
-  git grep -10 -p --heading --line-number --break --untracked "$1" 
+  git grep -10 -p --heading --line-number --break --untracked "$1"
 }
 
 mgng () {
@@ -101,7 +101,7 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
-export PS1="\[$txtgrn\]\w:\[$txtblu\]\$(__git_ps1)\[$txtrst\]$ "
+export PS1="\[$txtgrn\]\w:\[$txtred\]\$(__git_ps1)\[$txtrst\]$ "
 export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
 export GOPATH="${HOME}/go"
 export ELIXIRPATH="${HOME}/elixir/bin"
