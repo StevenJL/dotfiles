@@ -60,6 +60,9 @@ ppp (){
   echo $PATH | tr ":" "\n" | sort | uniq
 }
 
+cb () {
+  git branch | grep \* | awk '{print $2}'
+}
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
