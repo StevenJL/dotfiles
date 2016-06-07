@@ -24,6 +24,7 @@ set splitbelow
 set splitright
 set t_Co=256
 set foldmethod=syntax
+set iskeyword-=_
 colorscheme leo
 imap kj <ESC>
 vmap cc !pbcopy <CR>u
