@@ -49,7 +49,7 @@ mf (){
 }
 
 mg (){
-  git grep -10 -p --heading --line-number --break --untracked "$1"
+  git grep -10 -p --heading --line-number --break --untracked "$1" -- "."
 }
 
 mgng () {
