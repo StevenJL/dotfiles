@@ -44,6 +44,10 @@ zip_proj(){
   zip -r "$(proj_name)-$1-$(date "+%Y_%m_%dT%H_%M_%S")" *
 }
 
+gfo(){
+  git fetch origin $1
+}
+
 mf (){
   find ./ -name $1 2> /dev/null
 }
