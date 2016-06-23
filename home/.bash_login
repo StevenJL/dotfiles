@@ -48,6 +48,11 @@ gfo(){
   git fetch origin $1
 }
 
+recent_br(){
+  git for-each-ref --sort=committerdate refs/heads/ | tail -10 -r | awk '{print $3}' | cut -c 12-
+}
+
+
 mf (){
   find ./ -name $1 2> /dev/null
 }
