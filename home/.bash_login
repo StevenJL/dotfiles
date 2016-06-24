@@ -23,6 +23,9 @@ alias gdc='git diff --cached'
 alias gds='git diff --staged'
 alias git_update_ignore='git rm -r --cached .'
 alias git_cont='git reset --soft $(git log | grep commit | head -2 | tail -1 | sed s/"commit "//)'
+alias cunty='last_commit_cb && git commit'
+alias last_commit_cb='echo `last_commit_msg` | pbcopy '
+alias last_commit_msg='git log -1'
 
 
 git_comp(){
