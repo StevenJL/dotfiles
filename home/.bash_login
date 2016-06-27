@@ -14,7 +14,6 @@ if [[ $- != *i* ]] ; then
         return
 fi
 
-
 # Put your fun stuff here.
 alias git_rm='git ls-files --deleted -z | xargs -0 git rm'
 alias git_rb='git remote show $1'
@@ -33,6 +32,14 @@ gprog(){
 
 git_comp(){
   open "https://github.com/$1/compare/$2...$3"
+}
+
+git_cur_br(){
+  git br | grep \* | awk '{print $2}'
+}
+
+gpo(){
+  git push origin $(git_cur_br)
 }
 
 # need to install exuberant-ctags first
