@@ -142,3 +142,7 @@ export PATH="/usr/local/go/bin:${GOPATH}/bin:${ELIXIRPATH}:$PATH"
 export EDITOR=vim
 
 source ~/.profile
+
+function title {
+  echo -ne "\033]0;"$*"\007"
+}
