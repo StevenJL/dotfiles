@@ -17,6 +17,7 @@ set ruler
 set tabstop=2
 set expandtab
 set nowrap
+set hls
 set shiftwidth=2
 set foldlevel=1
 set autoindent
@@ -25,7 +26,6 @@ set splitbelow
 set splitright
 set t_Co=256
 set foldmethod=syntax
-set iskeyword-=_
 set backspace=indent,eol,start
 colorscheme leo
 imap kj <ESC>
