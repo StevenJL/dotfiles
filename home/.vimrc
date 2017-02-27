@@ -6,7 +6,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/public/*,*/node_modules/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/node_modules/*
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
