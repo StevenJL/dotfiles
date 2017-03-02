@@ -18,5 +18,5 @@ co = checkout
 ci = commit
 br = branch
 [user]
-	name = Steven Li
-	email = StevenJLi@gmail.com
+	name = Monkey Man
+	email = monkeyman@planetapes.com
