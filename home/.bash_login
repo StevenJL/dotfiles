@@ -28,7 +28,13 @@ alias gpull='git pull origin ${brn}'
 alias brn="git describe --contains --all HEAD"
 alias cunty='last_commit_cb && git commit'
 alias last_commit_cb='echo `last_commit_msg` | pbcopy '
-alias last_commit_msg='git log -1'
+last_commit_msg() {
+  LINES=`git log -1 | wc | awk '{print $1}'`
+  TAIL_INDEX=`expr $LINES - 3`
+  MSG=`git log -1 | tail -$TAIL_INDEX`
+  echo $MSG
+}
+
 gprog(){
   git commit -m 'in progress'
 }
