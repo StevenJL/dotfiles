@@ -7,6 +7,7 @@ if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/node_modules/*
+set runtimepath+=~/.vim/bundle/swift.vim
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
