@@ -14,7 +14,7 @@ if [[ $- != *i* ]] ; then
         return
 fi
 
-# Put your fun stuff here.
+# Git Stuff
 alias git_rm='git ls-files --deleted -z | xargs -0 git rm'
 alias git_rb='git remote show $1'
 alias git_remote_del='git push $1 --delete $2'
@@ -51,25 +51,15 @@ gpo(){
   git push origin $(git_cur_br)
 }
 
-# need to install exuberant-ctags first
-alias ct='ctags -R --exclude=.git --exclude=log --language-force=ruby . $( bundle list --paths )'
-alias dh='export DOCKER_HOST=tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376 && export DOCKER_CERT_PATH=/Users/stevenli/.boot2docker/certs/boot2docker-vm && export DOCKER_TLS_VERIFY=1'
-alias temp='vim "temp_$(date "+%Y_%m_%dT%H_%M_%S")"'
-alias diff_dir='diff -arq $1 $2'
-alias record='script "scripts/$(date "+%Y_%m_%dT%H_%M_%S")'
-alias erl_ver="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell"
-alias start_redis="redis-server /usr/local/etc/redis.conf"
-
-alias proj_name='echo ${PWD##*/}'
-alias 32_or_64='uname -m'
-
-gcm(){
-  git commit -m ' '"$1"' '
+cb () {
+  git branch | grep \* | awk '{print $2}'
 }
 
-zip_proj(){
-  zip -r "$(proj_name)-$1-$(date "+%Y_%m_%dT%H_%M_%S")" *
-}
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+source ~/.git-prompt.sh
 
 gfo(){
   git fetch origin $1
@@ -79,6 +69,25 @@ recent_br(){
   git for-each-ref --sort=committerdate refs/heads/ | tail -10 -r | awk '{print $3}' | cut -c 12-
 }
 
+gcm(){
+  git commit -m ' '"$1"' '
+}
+
+# need to install exuberant-ctags first
+alias ct='ctags -R --exclude=.git --exclude=log --language-force=ruby . $( bundle list --paths )'
+alias dh='export DOCKER_HOST=tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376 && export DOCKER_CERT_PATH=/Users/stevenli/.boot2docker/certs/boot2docker-vm && export DOCKER_TLS_VERIFY=1'
+alias temp='vim "temp_$(date "+%Y_%m_%dT%H_%M_%S")"'
+alias diff_dir='diff -arq $1 $2'
+alias record='script "scripts/$(date "+%Y_%m_%dT%H_%M_%S")'
+alias erl_ver="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell"
+alias start_redis="redis-server /usr/local/etc/redis.conf"
+
+alias 32_or_64='uname -m'
+
+alias proj_name='echo ${PWD##*/}'
+zip_proj(){
+  zip -r "$(proj_name)-$1-$(date "+%Y_%m_%dT%H_%M_%S")" *
+}
 
 mf (){
   find ./ -name $1 2> /dev/null
@@ -95,16 +104,6 @@ mgng () {
 ppp (){
   echo $PATH | tr ":" "\n" | sort | uniq
 }
-
-cb () {
-  git branch | grep \* | awk '{print $2}'
-}
-
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
-
-source ~/.git-prompt.sh
 
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
