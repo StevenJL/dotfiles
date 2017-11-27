@@ -14,7 +14,10 @@ if [[ $- != *i* ]] ; then
         return
 fi
 
-# Git Stuff
+#################################################################
+######### Git Stuff
+# ################################################################
+
 alias git_rm='git ls-files --deleted -z | xargs -0 git rm'
 alias git_rb='git remote show $1'
 alias git_remote_del='git push $1 --delete $2'
@@ -73,6 +76,41 @@ gcm(){
   git commit -m ' '"$1"' '
 }
 
+###############################################################
+#################### Grepping and Finding
+###############################################################
+
+mf (){
+  find ./ -name $1 2> /dev/null
+}
+
+mg (){
+  git grep -10 -p --heading --line-number --break --untracked "$1" -- "."
+}
+
+mgng () {
+  grep --colour -n -r "$1" ./* 2> /dev/null
+}
+
+###############################################################
+#################### TMUX
+##############################################################
+
+tm(){
+  tmux new -s $1
+}
+
+tma() {
+  tmux attach -t $1
+}
+
+alias tml='tmux ls'
+
+
+##############################################################
+################### MISC
+##############################################################
+
 # need to install exuberant-ctags first
 alias ct='ctags -R --exclude=.git --exclude=log --language-force=ruby . $( bundle list --paths )'
 alias dh='export DOCKER_HOST=tcp://$(/usr/local/bin/boot2docker ip 2>/dev/null):2376 && export DOCKER_CERT_PATH=/Users/stevenli/.boot2docker/certs/boot2docker-vm && export DOCKER_TLS_VERIFY=1'
@@ -89,21 +127,13 @@ zip_proj(){
   zip -r "$(proj_name)-$1-$(date "+%Y_%m_%dT%H_%M_%S")" *
 }
 
-mf (){
-  find ./ -name $1 2> /dev/null
-}
-
-mg (){
-  git grep -10 -p --heading --line-number --break --untracked "$1" -- "."
-}
-
-mgng () {
-  grep --colour -n -r "$1" ./* 2> /dev/null
-}
-
 ppp (){
   echo $PATH | tr ":" "\n" | sort | uniq
 }
+
+########################################################
+# SHELL UI
+########################################################
 
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
@@ -139,6 +169,10 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
+function title {
+  echo -ne "\033]0;"$*"\007"
+}
+
 export PS1="\[$txtgrn\]\w:\[$txtylw\]\$(__git_ps1)\[$txtrst\]$ "
 export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
 export GOPATH="${HOME}/go"
@@ -146,8 +180,6 @@ export ELIXIRPATH="${HOME}/elixir/bin"
 export PATH="/usr/local/go/bin:${GOPATH}/bin:${ELIXIRPATH}:$PATH"
 export EDITOR=vim
 
-source ~/.profile
 
-function title {
-  echo -ne "\033]0;"$*"\007"
-}
+
+source ~/.profile
