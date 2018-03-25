@@ -3,6 +3,7 @@ let NERDTreeShowHidden=1
 let g:ctrlp_max_files=0
 let g:ruby_fold_lines_limit=200
 let g:ackprg = 'ag --nogroup --nocolor --column'
+set backspace=indent,eol,start
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
 endif
@@ -27,13 +28,22 @@ set splitbelow
 set splitright
 set t_Co=256
 set foldmethod=syntax
-set backspace=indent,eol,start
 colorscheme leo
 imap kj <ESC>
 vmap cc !pbcopy <CR>u
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set pastetoggle=<F2>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
