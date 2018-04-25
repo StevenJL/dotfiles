@@ -3,6 +3,8 @@ let NERDTreeShowHidden=1
 let g:ctrlp_max_files=0
 let g:ruby_fold_lines_limit=200
 let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {'regex': 'possibly useless use of a variable in void context'}
 set backspace=indent,eol,start
 if exists("g:ctrl_user_command")
   unlet g:ctrlp_user_command
