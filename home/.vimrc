@@ -15,6 +15,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 filetype on
+set title
 set nocompatible
 set number
 set ruler
