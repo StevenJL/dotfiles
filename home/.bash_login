@@ -127,6 +127,9 @@ alias start_redis="redis-server /usr/local/etc/redis.conf"
 alias 32_or_64='uname -m'
 
 alias proj_name='echo ${PWD##*/}'
+
+alias vim='nvim'
+
 zip_proj(){
   zip -r "$(proj_name)-$1-$(date "+%Y_%m_%dT%H_%M_%S")" *
 }
