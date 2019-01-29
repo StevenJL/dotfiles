@@ -35,6 +35,8 @@ colorscheme leo
 imap kj <ESC>
 vmap cc !pbcopy <CR>u
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <c-a> :tabp<CR>
+nmap <silent> <c-s> :tabn<CR>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set pastetoggle=<F2>
 
