@@ -1,12 +1,8 @@
 let mapleader = ","
 let NERDTreeShowHidden=1
-let g:ctrlp_max_files=0
 let g:ruby_fold_lines_limit=200
 let g:ackprg = 'ag --nogroup --nocolor --column'
 set backspace=indent,eol,start
-if exists("g:ctrl_user_command")
-  unlet g:ctrlp_user_command
-endif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/node_modules/*
 set runtimepath+=~/.vim/bundle/swift.vim
 execute pathogen#infect()
@@ -75,3 +71,5 @@ set foldexpr=RubyMethodFold(v:lnum)
 
 autocmd BufWritePre * :%s/\s\+$//e
 
+set rtp+=/usr/local/opt/fzf
+nnoremap <C-p> :GFiles<CR>
