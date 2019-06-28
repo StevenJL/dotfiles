@@ -73,3 +73,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 set rtp+=/usr/local/opt/fzf
 nnoremap <C-p> :GFiles<CR>
+command! -bang -nargs=* FindWithRipGrep
+  \ call fzf#vim#grep(
+  \   'rg  --column --line-number --no-heading --fixed-strings --ignore-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+nnoremap <C-f> :FindWithRipGrep<CR>
