@@ -89,16 +89,18 @@ endif
 " map Control-F to fzf-ripgrep
 nmap <silent> <c-f> :Rg<CR>
 
-"" COC
+" COC
+" :CocConfig to see the config
 nmap <silent> gd <Plug>(coc-definition)
 let g:coc_node_path = '/Users/developer/.nvm/versions/node/v10.12.0/bin/node'
 
 "Ale customization
-let g:ale_linters = { 'ruby': ['rubocop', 'ruby', 'standardrb'], 'javascriptreact': ['javascript', 'jsx'] }
+" See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
+" :ALEInfo to see which linters are currently being used
+let g:ale_linters = { 'ruby': ['rubocop', 'ruby', 'standardrb'], 'javascriptreact': ['eslint', 'standard'] }
 
 " Fugitive
 nnoremap <leader>gb :Git blame<cr>
 
 " Colorscheme
 colorscheme leo
-
