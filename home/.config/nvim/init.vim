@@ -60,7 +60,6 @@ nnoremap <leader>cp :!echo -n % \| pbcopy<CR><CR>
 " PLUGINS
 call plug#begin()
   Plug 'preservim/nerdtree'
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'dense-analysis/ale'
@@ -77,22 +76,16 @@ let NERDTreeShowHidden=1
 " Pressing <leader> + N shows the current file inside Nerdtree
 nnoremap <leader>n :NERDTreeFind<cr>
 
-" CtrlP Customization
-let g:ctrlp_regexp = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-if executable('rg')
-    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-    let g:ctrlp_use_caching = 0
-endif
-
 " fzf customization
 " map Control-F to fzf-ripgrep
 nmap <silent> <c-f> :Rg<CR>
+"map Control-P to file search
+nmap <silent> <c-p> :Files<CR>
 
 " COC
 " :CocConfig to see the config
 nmap <silent> gd <Plug>(coc-definition)
-let g:coc_node_path = '/Users/developer/.nvm/versions/node/v10.12.0/bin/node'
+let g:coc_node_path = '/Users/stevenli/.nvm/versions/node/v10.12.0/bin/node'
 
 "Ale customization
 " See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
@@ -104,3 +97,4 @@ nnoremap <leader>gb :Git blame<cr>
 
 " Colorscheme
 colorscheme leo
+
