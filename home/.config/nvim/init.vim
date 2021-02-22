@@ -24,14 +24,6 @@ set foldlevel=20
 " When text is selected in visual mode, pressing cc puts content in clipboard
 vmap cc !pbcopy <CR>u
 
-" The Vim statusline shows up in lower left, to the right next to the filename
-" These lines customize the status line to show useful information. See: https://shapeshed.com/vim-statuslines/
-set statusline+=%#warningmsg#
-set statusline+=%*
-set statusline+=%f
-set statusline+=\ %m
-set statusline+=col:\ %c"
-
 "Short-cuts for toggling between vim split screens
 " Press :vs to vertically split into two screens
 " Control-L will move cursor to the right screen
