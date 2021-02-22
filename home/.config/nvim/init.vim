@@ -10,6 +10,10 @@ set title
 " When line length exceeds editor width, content does not wrap around
 set nowrap
 
+"Fast commenting/uncommenting of code blocks
+vnoremap # :s#^#\##<cr>
+vnoremap -# :s#^\###<cr>
+
 " Uses indents to fold code (https://en.wikipedia.org/wiki/Code_folding)
 " Press space to unfold lines
 " Press A-Z to fold lines
