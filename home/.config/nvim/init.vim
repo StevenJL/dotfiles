@@ -58,6 +58,7 @@ call plug#begin()
   Plug 'preservim/nerdtree'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'wookayin/fzf-ripgrep.vim'
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-fugitive'
   Plug 'flazz/vim-colorschemes'
@@ -75,12 +76,13 @@ nnoremap <leader>n :NERDTreeFind<cr>
 
 " fzf customization
 " map Control-F to fzf-ripgrep
-nmap <silent> <c-f> :Rg<CR>
+nmap <silent> <c-f> :RgFzf<CR>
 "map Control-P to file search
 nmap <silent> <c-p> :Files<CR>
 
 " COC
 " :CocConfig to see the config
+" :CheckHealth to see status of lang analysis
 nmap <silent> gd <Plug>(coc-definition)
 let g:coc_node_path = '/Users/stevenli/.nvm/versions/node/v10.12.0/bin/node'
 
