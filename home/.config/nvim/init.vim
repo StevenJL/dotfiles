@@ -62,6 +62,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'flazz/vim-colorschemes'
   Plug 'neoclide/coc.nvim'
+  Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 " NerdTree customization
@@ -93,4 +94,7 @@ nnoremap <leader>gb :Git blame<cr>
 
 " Colorscheme
 colorscheme leo
+
+"Vista
+nnoremap <leader>v :Vista coc<cr>
 
