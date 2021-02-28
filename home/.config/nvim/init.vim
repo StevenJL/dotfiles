@@ -89,7 +89,13 @@ let g:coc_node_path = '/Users/stevenli/.nvm/versions/node/v10.12.0/bin/node'
 "Ale customization
 " See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
 " :ALEInfo to see which linters are currently being used
-let g:ale_linters = { 'ruby': ['rubocop', 'ruby', 'standardrb'], 'javascriptreact': ['eslint', 'standard'] }
+" For python to work, will need to first install pylint:
+"   pip3 install pylint
+let g:ale_linters = { 
+			\'ruby': ['rubocop', 'ruby', 'standardrb'], 
+			\'javascriptreact': ['eslint', 'standard'],
+			\'python': ['bandit', 'flake8', 'jedils', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyls', 'pyre', 'pyright', 'vulture']
+			\}
 
 " Fugitive
 nnoremap <leader>gb :Git blame<cr>
