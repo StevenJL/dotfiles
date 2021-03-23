@@ -10,6 +10,12 @@ set title
 " When line length exceeds editor width, content does not wrap around
 set nowrap
 
+" Use spaces for tabs
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
 "Fast commenting/uncommenting of code blocks
 vnoremap # :s#^#\##<cr>
 vnoremap -# :s#^\###<cr>
