@@ -54,10 +54,6 @@ gpo(){
   git push origin $(git_cur_br)
 }
 
-cb () {
-  git branch | grep \* | awk '{print $2}'
-}
-
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
@@ -187,7 +183,7 @@ export GOPATH="${HOME}/go"
 export ELIXIRPATH="${HOME}/elixir/bin"
 export PATH="/usr/local/go/bin:${GOPATH}/bin:${ELIXIRPATH}:$PATH"
 export EDITOR=vim
-
+set -o ignoreeof
 
 
 source ~/.profile
