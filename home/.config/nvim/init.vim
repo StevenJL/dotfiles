@@ -60,6 +60,8 @@ let mapleader = ","
 nnoremap <leader>cp :!echo -n % \| pbcopy<CR><CR>
 
 " PLUGINS
+" :PlugInstall - to install packages
+" :PlugUpdate - to update packages
 call plug#begin()
   Plug 'preservim/nerdtree'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -68,8 +70,8 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-fugitive'
   Plug 'flazz/vim-colorschemes'
-  Plug 'neoclide/coc.nvim'
   Plug 'liuchengxu/vista.vim'
+  Plug 'junegunn/gv.vim'
 call plug#end()
 
 " NerdTree customization
@@ -85,12 +87,6 @@ nnoremap <leader>n :NERDTreeFind<cr>
 nmap <silent> <c-f> :RgFzf<CR>
 "map Control-P to file search
 nmap <silent> <c-p> :Files<CR>
-
-" COC
-" :CocConfig to see the config
-" :CheckHealth to see status of lang analysis
-nmap <silent> gd <Plug>(coc-definition)
-let g:coc_node_path = '/Users/stevenli/.nvm/versions/node/v10.12.0/bin/node'
 
 "Ale customization
 " See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
@@ -109,6 +105,6 @@ nnoremap <leader>gb :Git blame<cr>
 " Colorscheme
 colorscheme leo
 
-"Vista
-nnoremap <leader>v :Vista coc<cr>
-
+"Show git history for current file
+noremap <leader>gh :GV!<CR>
+nnoremap <leader>gc :GV<CR>
