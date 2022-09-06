@@ -27,8 +27,12 @@ set foldmethod=indent
 " When opening a new file, only highly indented lines get folded
 set foldlevel=20
 
+"copying to clipboard on Mac OS X
 " When text is selected in visual mode, pressing cc puts content in clipboard
 vmap cc !pbcopy <CR>u
+
+"copying to clipboard in Linux
+vmap cc :w !xclip -i -sel c <CR><CR>
 
 "Short-cuts for toggling between vim split screens
 " Press :vs to vertically split into two screens
