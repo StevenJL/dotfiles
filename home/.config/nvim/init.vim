@@ -99,7 +99,7 @@ nmap <silent> <c-p> :Files<CR>
 "   pip3 install pylint
 let g:ale_linters = { 
 			\'ruby': ['rubocop', 'ruby', 'standardrb'], 
-			\'javascriptreact': ['eslint', 'standard'],
+			\'javascriptreact': ['eslint', 'standard', 'tslint'],
 			\'python': ['bandit', 'flake8', 'jedils', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyls', 'pyre', 'pyright', 'vulture']
 			\}
 
