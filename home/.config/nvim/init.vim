@@ -98,6 +98,8 @@ nmap <silent> <c-p> :Files<CR>
 " :ALEInfo to see which linters are currently being used
 " For python to work, will need to first install pylint:
 "   pip3 install pylint
+" For Ruby to work, need to install rubocop first
+"   gem install rubocop (if it's not already in project Gemfile)
 let g:ale_linters = { 
 			\'ruby': ['rubocop'], 
 			\'javascriptreact': ['eslint', 'standard', 'tslint'],
