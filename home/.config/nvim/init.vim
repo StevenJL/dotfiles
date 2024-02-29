@@ -76,6 +76,7 @@ call plug#begin()
   Plug 'flazz/vim-colorschemes'
   Plug 'liuchengxu/vista.vim'
   Plug 'junegunn/gv.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " NerdTree customization
@@ -112,3 +113,15 @@ colorscheme leo
 "Show git history for current file
 noremap <leader>gh :GV!<CR>
 nnoremap <leader>gc :GV<CR>
+
+"Auto-complete for vim.coc
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
