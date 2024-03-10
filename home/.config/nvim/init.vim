@@ -79,6 +79,9 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+" To install coc-tserver for working with typescript,
+" run `:CocInstall coc-tsserver` in vim
+
 " NerdTree customization
 " Map Control-N to open nerdtree
 nmap <silent> <c-n> :NERDTreeToggle<CR>
