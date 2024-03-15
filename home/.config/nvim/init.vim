@@ -82,6 +82,9 @@ call plug#end()
 " To install coc-tserver for working with typescript,
 " run `:CocInstall coc-tsserver` in vim
 
+" For the COC plugin, this makes `tab` select the selected auto-fill suggestion
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#_select_confirm() : "\<Tab>"
+
 " NerdTree customization
 " Map Control-N to open nerdtree
 nmap <silent> <c-n> :NERDTreeToggle<CR>
