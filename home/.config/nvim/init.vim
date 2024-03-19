@@ -77,7 +77,9 @@ call plug#begin()
   Plug 'liuchengxu/vista.vim'
   Plug 'junegunn/gv.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'prisma/vim-prisma'
 call plug#end()
+" Run :PlugInstall once to install all these plugins
 
 " To install coc-tserver for working with typescript,
 " run `:CocInstall coc-tsserver` in vim
