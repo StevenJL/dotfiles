@@ -29,10 +29,7 @@ set foldlevel=20
 
 "copying to clipboard on Mac OS X
 " When text is selected in visual mode, pressing cc puts content in clipboard
-vmap cc !pbcopy <CR>u
-
-"copying to clipboard in Linux
-vmap cc :w !xclip -i -sel c <CR><CR>
+vmap cc "*y
 
 "Short-cuts for toggling between vim split screens
 " Press :vs to vertically split into two screens
@@ -63,10 +60,7 @@ let mapleader = ","
 " Pressing <leader>cp copies
 nnoremap <leader>cp :!echo -n % \| pbcopy<CR><CR>
 
-" PLUGINS
-" :PlugInstall - to install packages
-" :PlugUpdate - to update packages
-call plug#begin()
+call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'preservim/nerdtree'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -74,19 +68,20 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'tpope/vim-fugitive'
   Plug 'flazz/vim-colorschemes'
-  Plug 'liuchengxu/vista.vim'
   Plug 'junegunn/gv.vim'
+  Plug 'ngmy/vim-rubocop'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'prisma/vim-prisma'
   Plug 'kchmck/vim-coffee-script'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
 
-" To install coc-tserver for working with typescript,
-" run `:CocInstall coc-tsserver` in vim
-
 " For the COC plugin, this makes `tab` select the selected auto-fill suggestion
 inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#_select_confirm() : "\<Tab>"
+
+" Rubocop auto correct
+let g:vimrubocop_keymap = 0
+nmap <Leader>ra :RuboCop -a<CR>
 
 " NerdTree customization
 " Map Control-N to open nerdtree
@@ -97,6 +92,9 @@ let NERDTreeShowHidden=1
 nnoremap <leader>n :NERDTreeFind<cr>
 
 " fzf customization
+" will need to install first: 
+"   brew install fzf
+"   brew install ripgrep
 " map Control-F to fzf-ripgrep
 nmap <silent> <c-f> :RgFzf<CR>
 "map Control-P to file search
@@ -105,17 +103,17 @@ nmap <silent> <c-p> :Files<CR>
 "Ale customization
 " See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
 " :ALEInfo to see which linters are currently being used
-" For python to work, will need to first install pylint:
-"   pip3 install pylint
 " For Ruby to work, need to install rubocop first
 "   gem install rubocop (if it's not already in project Gemfile)
+" For python to work, will need to first install pylint:
+"   pip3 install pylint
 " For Coffeescript to work, first install coffeelint:
 "   npm install -g coffeelint
-let g:ale_linters = {
+let g:ale_linters = { 
 			\'ruby': ['rubocop'], 
 			\'javascriptreact': ['eslint', 'standard', 'tslint'],
 			\'python': ['bandit', 'flake8', 'jedils', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyls', 'pyre', 'pyright', 'vulture'],
-                        \'coffescript': ['coffeelint']
+      \'coffescript': ['coffeelint']
 			\}
 
 " Fugitive
@@ -132,3 +130,4 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
