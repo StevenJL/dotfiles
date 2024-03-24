@@ -108,10 +108,13 @@ nmap <silent> <c-p> :Files<CR>
 "   pip3 install pylint
 " For Ruby to work, need to install rubocop first
 "   gem install rubocop (if it's not already in project Gemfile)
-let g:ale_linters = { 
+" For Coffeescript to work, first install coffeelint:
+"   npm install -g coffeelint
+let g:ale_linters = {
 			\'ruby': ['rubocop'], 
 			\'javascriptreact': ['eslint', 'standard', 'tslint'],
-			\'python': ['bandit', 'flake8', 'jedils', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyls', 'pyre', 'pyright', 'vulture']
+			\'python': ['bandit', 'flake8', 'jedils', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyls', 'pyre', 'pyright', 'vulture'],
+                        \'coffescript': ['coffeelint']
 			\}
 
 " Fugitive
