@@ -78,6 +78,7 @@ call plug#begin()
   Plug 'junegunn/gv.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'prisma/vim-prisma'
+  Plug 'kchmck/vim-coffee-script'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
 
