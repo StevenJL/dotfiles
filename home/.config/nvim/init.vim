@@ -90,7 +90,7 @@ function! NearestMethodOrFunction() abort
 endfunction
 
 " For the Vim-vista Plugin, automatically show the nearest
-" method/function in Vista side panel.
+" method/function in Vista side panel
 set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
@@ -99,17 +99,24 @@ set statusline+=%{NearestMethodOrFunction()}
 " you can add the following line to your vimrc
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
+" Tell vim-vista to use ctags for typescriptreact
+let g:vista_ctags_source = {
+      \ 'typescriptreact': 'ctags',
+      \ }
+
 " Make Vim-vista play nicely with lightline
 let g:lightline = {
       \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'method' ] ]
+      \ 'component': {
+      \    'filename': '%F',
       \ },
       \ 'component_function': {
       \   'method': 'NearestMethodOrFunction'
       \ },
       \ }
+
+"c-ctags
+" If using c-tags in vim, to jump to definition, just do Ctrl-]
 
 " Rubocop auto correct
 let g:vimrubocop_keymap = 0
@@ -162,5 +169,4 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 
