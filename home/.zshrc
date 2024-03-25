@@ -86,7 +86,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # automatically use the node version specified in project root 
 # based on the .nvmrc file
-
 autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version="$(nvm version)"
@@ -115,6 +114,14 @@ load-nvmrc
 
 export PATH="/usr/local/bin:$PATH"
 
+########### c-tags javascript/typescript support
+#
+######################## C-TAG GOTCHAS ###################################
+# How do make ctags work with parsing tsx files?
+# 1. In the root directory of project add this .ctags file: https://gist.github.com/StevenJL/4764b678f53786ebd3578499a62a865d
+# 2. In HOME/.ctags.d/tsx.ctags add the line `--langmap=TypeScript::ts.tsx`
+
 ctags_typescript() {
-  ctags -R --languages=typescript --exclude=.git --exclude=node_modules .
+  ctags --options=${pwd}.ctags -R
 }
+
