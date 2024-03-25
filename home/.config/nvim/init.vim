@@ -60,6 +60,8 @@ let mapleader = ","
 " Pressing <leader>cp copies
 nnoremap <leader>cp :!echo -n % \| pbcopy<CR><CR>
 
+" :PlugInstall to install plug-ins
+" :PlugStatus to see which plug-ins installed
 call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'preservim/nerdtree'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -73,11 +75,29 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'prisma/vim-prisma'
   Plug 'kchmck/vim-coffee-script'
+  Plug 'liuchengxu/vista.vim'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
 
-" For the COC plugin, this makes `tab` select the selected auto-fill suggestion
+" For the Vim-COC plugin, this makes `tab` select the selected auto-fill suggestion
 inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#_select_confirm() : "\<Tab>"
+
+" For the Vim-vista Plugin to use ctags when opening sidebar
+let g:vista_default_executive = 'ctags'
+
+" For the Vim-vista Plugin, automatically show the nearest
+" method/function in Vista side panel.
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " Rubocop auto correct
 let g:vimrubocop_keymap = 0
@@ -130,4 +150,5 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 
