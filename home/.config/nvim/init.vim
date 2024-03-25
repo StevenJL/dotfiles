@@ -75,6 +75,7 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'prisma/vim-prisma'
   Plug 'kchmck/vim-coffee-script'
+  Plug 'itchyny/lightline.vim'
   Plug 'liuchengxu/vista.vim'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
@@ -84,13 +85,12 @@ inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#_select_confirm() : "\<Tab
 
 " For the Vim-vista Plugin to use ctags when opening sidebar
 let g:vista_default_executive = 'ctags'
-
-" For the Vim-vista Plugin, automatically show the nearest
-" method/function in Vista side panel.
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
+" For the Vim-vista Plugin, automatically show the nearest
+" method/function in Vista side panel.
 set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
@@ -98,6 +98,18 @@ set statusline+=%{NearestMethodOrFunction()}
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+" Make Vim-vista play nicely with lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'method' ] ]
+      \ },
+      \ 'component_function': {
+      \   'method': 'NearestMethodOrFunction'
+      \ },
+      \ }
 
 " Rubocop auto correct
 let g:vimrubocop_keymap = 0
