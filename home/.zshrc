@@ -107,3 +107,14 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+########### c-tags ############
+## To install ctags on Mac OS:
+#  1.  brew install --HEAD universal-ctags
+#  2.  ctags --version
+
+export PATH="/usr/local/bin:$PATH"
+
+ctags_typescript() {
+  ctags -R --languages=typescript --exclude=.git --exclude=node_modules .
+}
