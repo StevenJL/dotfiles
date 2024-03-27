@@ -125,3 +125,6 @@ ctags_typescript() {
   ctags --options=${pwd}.ctags -R
 }
 
+ctags_ruby() {
+  ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)
+}
