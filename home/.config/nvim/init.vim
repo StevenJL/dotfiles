@@ -138,7 +138,7 @@ nnoremap <leader>n :NERDTreeFind<cr>
 " map Control-F to fzf-ripgrep
 nmap <silent> <c-f> :RgFzf<CR>
 "map Control-P to file search
-nmap <silent> <c-p> :Files<CR>
+nmap <silent> <c-p> :GFiles<CR>
 
 "Ale customization
 " See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
