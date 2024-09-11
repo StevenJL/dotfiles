@@ -130,6 +130,7 @@ let NERDTreeShowHidden=1
 " Pressing <leader> + N shows the current file inside Nerdtree
 nnoremap <leader>n :NERDTreeFind<cr>
 
+"Ctrl-F and Ctrl-P are provided by the junegunn/fzf.vim plug-ins
 " fzf customization
 " will need to install first: 
 "   brew install fzf
