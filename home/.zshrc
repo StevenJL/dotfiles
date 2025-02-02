@@ -78,6 +78,31 @@ alias be='bundle exec'
 
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
+############### TMUX ################
+# Detach From Session Ctrl+b d
+
+# First install tmux via:
+#  `brew install tmux`
+function tmx_new_session () {
+  tmux new -s "$1"
+}
+
+function tmx_list_sessions () {
+  tmux list-sessions | sort
+}
+
+function tmx_attach () {
+  tmux attach-session -t "$1"
+}
+
+function tmx_kill () {
+  tmux kill-session -t "$1"
+}
+
+function tmx_kill_all () {
+  tmux kill-server
+}
+
 ########### Node ##################
 
 export NVM_DIR="$HOME/.nvm"
