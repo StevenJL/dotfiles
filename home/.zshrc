@@ -80,6 +80,7 @@ alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 ############### TMUX ################
 # Detach From Session Ctrl+b d
+# Switch to a different session Ctrl+b s, then use arrow keys and enter
 
 # First install tmux via:
 #  `brew install tmux`
