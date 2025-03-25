@@ -23,7 +23,7 @@ function pr_create() {
 }
 
 function gprog(){
-  git commit -m 'in progress'
+  git commit --no-verify -m 'in progress'
 }
 
 function recent_br(){
