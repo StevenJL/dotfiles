@@ -62,8 +62,15 @@ export PROMPT='${COLOR_DIR}%~${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} '
 
 ########## Grepping and Finding ###############
 
+# Search for all examples of a string in code
+# EX: mg "Account"
+#
+# Search for all examples of a string in code but only in certain files
+# EX: mg "Account" "*controller"
 function mg (){
-  git grep -10 -p --heading --line-number --break --untracked "$1" -- "."
+  # Default path is "." 
+  local path_arg="${2:-.}"
+  git grep -10 -p --heading --line-number --break --untracked "$1" -- "${path_arg}"
 }
 
 ######### ES LINT #############
