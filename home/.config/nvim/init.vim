@@ -118,6 +118,24 @@ let g:lightline = {
 "c-ctags
 " If using c-tags in vim, to jump to definition, just do Ctrl-]
 
+" ####################### TypeScript LSP setup #################################################
+" First install the typescript language server
+"   `npm install -g typescript typescript-language-server`
+"
+" Then check that Plug 'neovim/nvim-lspconfig' is installed in the Plug
+" section
+lua << EOF
+  require'lspconfig'.tsserver.setup{}
+EOF
+
+" In normal mode, when cursor is on top of variable, type K to see type
+nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
+
+" With the LSP installed, you can also just do Ctrl-] to go-to the definition
+" ######################################################################
+
+
+
 " Rubocop auto correct
 let g:vimrubocop_keymap = 0
 nmap <Leader>ra :RuboCop -a<CR>
