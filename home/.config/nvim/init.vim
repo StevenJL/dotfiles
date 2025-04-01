@@ -118,7 +118,8 @@ let g:lightline = {
 "c-ctags
 " If using c-tags in vim, to jump to definition, just do Ctrl-]
 
-" ####################### TypeScript LSP setup #################################################
+" ################# TypeScript LSP setup ###################################
+
 " First install the typescript language server
 "   `npm install -g typescript typescript-language-server`
 "
@@ -128,6 +129,8 @@ lua << EOF
   require'lspconfig'.tsserver.setup{}
 EOF
 
+" ############ Go-to Definition and Finding References #####################################
+
 " In normal mode, when cursor is on top of variable, type K to see type
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 
@@ -136,9 +139,18 @@ nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 " In normal mode, when cursor is on top of something, type F to see all
 " references
 nnoremap <silent>F :lua vim.lsp.buf.references()<CR>
-" Once the results are in the 'Quick Fix' window, highlight it with
-" cursor and type Ctrl-W then enter
 
+" Once the results are in the 'Quick Fix' window, highlight it with
+" cursor and type Ctrl-T to open result in new tab
+augroup QuickfixMappings
+  autocmd!
+  autocmd FileType qf nnoremap <buffer> <C-t> <cmd>tab split<CR><CR>
+augroup END
+" Or do Ctrl-V to open in vertical split
+augroup QuickfixMappings
+  autocmd!
+  autocmd FileType qf nnoremap <buffer> <C-v> <C-w><CR><C-w>L
+augroup END
 " ######################################################################
 
 
