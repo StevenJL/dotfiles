@@ -132,8 +132,14 @@ EOF
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 
 " With the LSP installed, you can also just do Ctrl-] to go-to the definition
-" ######################################################################
 
+" In normal mode, when cursor is on top of something, type F to see all
+" references
+nnoremap <silent>F :lua vim.lsp.buf.references()<CR>
+" Once the results are in the 'Quick Fix' window, highlight it with
+" cursor and type Ctrl-W then enter
+
+" ######################################################################
 
 
 " Rubocop auto correct
