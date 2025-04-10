@@ -135,6 +135,9 @@ EOF
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 
 " With the LSP installed, you can also just do Ctrl-] to go-to the definition
+" For Ruby, install ripper-tags first:
+" `gem install ripper-tags`
+" `ripper-tags -R --exclude=vendor`
 
 " In normal mode, when cursor is on top of something, type F to see all
 " references
