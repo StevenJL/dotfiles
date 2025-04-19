@@ -140,20 +140,18 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+########### Docker ############
+function docker_ppp() {
+  if [[ -n "$1" ]]; then
+    docker ps "$1" --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
+  else
+    docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
+  fi
+}
+
 ########### c-tags ############
 ## To install ctags on Mac OS:
 #  1.  brew install --HEAD universal-ctags
 #  2.  ctags --version
 
 export PATH="/usr/local/bin:$PATH"
-
-########### c-tags javascript/typescript support
-#
-######################## C-TAG GOTCHAS ###################################
-# How do make ctags work with parsing tsx files?
-# 1. In the root directory of project add this .ctags file: https://gist.github.com/StevenJL/4764b678f53786ebd3578499a62a865d
-# 2. In HOME/.ctags.d/tsx.ctags add the line `--langmap=TypeScript::ts.tsx`
-
-ctags_typescript() {
-  ctags --options=${pwd}.ctags -R
-}
