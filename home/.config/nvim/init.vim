@@ -72,16 +72,12 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'flazz/vim-colorschemes'
   Plug 'junegunn/gv.vim'
   Plug 'ngmy/vim-rubocop'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'prisma/vim-prisma'
   Plug 'kchmck/vim-coffee-script'
   Plug 'itchyny/lightline.vim'
   Plug 'liuchengxu/vista.vim'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
-
-" For the Vim-COC plugin, this makes `tab` select the selected auto-fill suggestion
-inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#_select_confirm() : "\<Tab>"
 
 " For the Vim-vista Plugin to use ctags when opening sidebar
 let g:vista_default_executive = 'ctags'
