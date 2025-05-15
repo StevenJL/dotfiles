@@ -72,44 +72,13 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'flazz/vim-colorschemes'
   Plug 'junegunn/gv.vim'
   Plug 'ngmy/vim-rubocop'
+  Plug 'hashivim/vim-terraform'
   Plug 'prisma/vim-prisma'
   Plug 'kchmck/vim-coffee-script'
   Plug 'itchyny/lightline.vim'
-  Plug 'liuchengxu/vista.vim'
+  Plug 'neovim/nvim-lspconfig'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
-
-" For the Vim-vista Plugin to use ctags when opening sidebar
-let g:vista_default_executive = 'ctags'
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-" For the Vim-vista Plugin, automatically show the nearest
-" method/function in Vista side panel
-set statusline+=%{NearestMethodOrFunction()}
-
-" By default vista.vim never run if you don't call it explicitly.
-"
-" If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-
-" Tell vim-vista to use ctags for typescriptreact
-let g:vista_ctags_source = {
-      \ 'typescriptreact': 'ctags',
-      \ }
-
-" Make Vim-vista play nicely with lightline
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \    'filename': '%F',
-      \ },
-      \ 'component_function': {
-      \   'method': 'NearestMethodOrFunction'
-      \ },
-      \ }
 
 "c-ctags
 " If using c-tags in vim, to jump to definition, just do Ctrl-]
@@ -152,7 +121,6 @@ augroup QuickfixMappings
 augroup END
 " ######################################################################
 
-
 " Rubocop auto correct
 let g:vimrubocop_keymap = 0
 nmap <Leader>ra :RuboCop -a<CR>
@@ -184,11 +152,19 @@ nmap <silent> <c-p> :GFiles<CR>
 "   pip3 install pylint
 " For Coffeescript to work, first install coffeelint:
 "   npm install -g coffeelint
+" For SQL linter to work, first install sqlfluff:
+"   pip3 install sqlfluff
+" For Terraform linter to work, first install tflint:
+"   brew install tflint
+" Also ensure that terraform has been installed:
+"   terraform version
 let g:ale_linters = { 
 			\'ruby': ['rubocop'], 
 			\'javascriptreact': ['eslint', 'standard', 'tslint'],
 			\'python': ['bandit', 'flake8', 'jedils', 'mypy', 'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint', 'pyls', 'pyre', 'pyright', 'vulture'],
-      \'coffescript': ['coffeelint']
+      \'coffescript': ['coffeelint'],
+      \'sql': ['sqlint'],
+      \'terraform': ['tflint', 'terraformvalidate'],
 			\}
 
 " Fugitive
@@ -196,6 +172,10 @@ nnoremap <leader>gb :Git blame<cr>
 
 " Colorscheme
 colorscheme leo
+
+"number of lines for syntax synchronization
+set synmaxcol=5000
+syntax sync minlines=2000
 
 "Show git history for current file
 noremap <leader>gh :GV!<CR>
@@ -205,4 +185,46 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+
+
+" Generate random 8-digit hex at cursor, used in WX-System
+function! GenerateRandomEightDigitHex()
+  " Set length to 8
+  let l:length = 8
+  
+  " Define alphabet
+  let l:alphabet = '0123456789abcdef'
+  let l:alphabet_length = strlen(l:alphabet)
+  
+  " Set random seed
+  let l:seed = localtime() % 0x10000
+  let l:random = l:seed
+  
+  " Initialize empty result
+  let l:result = '#'
+  
+  " Generate each character of the result
+  let l:i = 0
+  while l:i < l:length
+    " Generate next random value (linear congruential generator)
+    let l:random = (l:random * 214013 + 2531011) % 0x10000
+    let l:rnd = (l:random / 256) % l:alphabet_length
+    
+    " Append random character from alphabet
+    let l:result.= l:alphabet[l:rnd]
+    
+    let l:i += 1
+  endwhile
+  let l:result.= ' '
+  
+  return l:result
+endfunction
+
+function! PromiseThenCatchIdiom()
+  return ".then(() => {\n})\n.catch((err: Error) => {\n  const error: Error = new Error(\n  );\n  logger.error(error);  throw error;\n});"
+endfunction
+
+nnoremap <leader>rd "=GenerateRandomEightDigitHex()<CR>p
+noremap <leader>tc "=PromiseThenCatchIdiom()"<CR>p
 
