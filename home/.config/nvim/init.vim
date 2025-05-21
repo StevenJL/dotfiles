@@ -4,8 +4,9 @@ imap kj <ESC>
 " Show line numbers in editor
 set number
 
-" Shows file name in terminal window title bar
+" Shows full file name in terminal window title bar
 set title
+set titlestring=%{expand('%:p')}
 
 " When line length exceeds editor width, content does not wrap around
 set nowrap
