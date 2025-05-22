@@ -59,7 +59,7 @@ let mapleader = ","
 
 "Copy the current file path to the clipboard
 " Pressing <leader>cp copies
-nnoremap <leader>cp :!echo -n % \| pbcopy<CR><CR>
+nnoremap <leader>cp :call system('pbcopy', expand('%'))<CR>
 
 " :PlugInstall to install plug-ins
 " :PlugStatus to see which plug-ins installed
