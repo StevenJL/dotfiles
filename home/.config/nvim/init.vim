@@ -63,7 +63,7 @@ nnoremap <leader>p :<C-u>echo expand('%:.:r')<CR>
 
 "Copy the current file path to the clipboard
 " Pressing <leader>cp copies
-nnoremap <leader>cp :call system('pbcopy', expand('%'))<CR>
+nnoremap <leader>cp :call system('pbcopy', expand('%:.'))<CR><CR>
 
 " :PlugInstall to install plug-ins
 " :PlugStatus to see which plug-ins installed
