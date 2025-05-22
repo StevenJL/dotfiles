@@ -57,6 +57,10 @@ nmap <silent> <c-s> :tabn<CR>
 let mapleader = ","
 " Henceforth, every <leader> reference in this file will refer to the comma key (,)
 
+"Show the current file path 
+" Pressing <leader>p show current file path
+nnoremap <leader>p :<C-u>echo expand('%:.:r')<CR>
+
 "Copy the current file path to the clipboard
 " Pressing <leader>cp copies
 nnoremap <leader>cp :call system('pbcopy', expand('%'))<CR>
