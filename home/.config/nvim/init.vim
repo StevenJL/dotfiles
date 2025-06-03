@@ -99,6 +99,24 @@ lua << EOF
   require'lspconfig'.tsserver.setup{}
 EOF
 
+" ################## Auto-complete ######################3
+set completeopt=menu,menuone,noselect
+
+" Enable completion from various sources
+set complete=.,w,b,u,t,i
+
+" Map Tab to navigate completion menu or trigger completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Optional: Map Ctrl-Space to manually trigger completion
+inoremap <C-Space> <C-n>
+
+" Optional: Auto-trigger completion after typing a certain number of characters
+" This will show completions after typing 2 characters
+set completeopt+=noinsert
+autocmd InsertCharPre * if len(v:char) > 0 | call feedkeys("\<C-n>\<C-p>", 'n') | endif
+
 " ############ Go-to Definition and Finding References #####################################
 
 " In normal mode, when cursor is on top of variable, type K to see type
