@@ -62,7 +62,7 @@ let mapleader = ","
 nnoremap <leader>p :<C-u>echo expand('%:.:r')<CR>
 
 "Copy the current file path to the clipboard
-" Pressing <leader>cp copies
+" Pressing <leader>cp copies current file path into clipboard
 nnoremap <leader>cp :call system('pbcopy', expand('%:.'))<CR><CR>
 
 " :PlugInstall to install plug-ins
@@ -82,8 +82,39 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'kchmck/vim-coffee-script'
   Plug 'itchyny/lightline.vim'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 " Run :PlugInstall once to install all these plugins
+
+" ################### neoclide/coc.nvim #########################
+" For neoclide/coc.nvim
+" Run this vim command after install
+" `:CocInstall coc-tsserver`
+
+set nobackup
+set nowritebackup
+" Disable Vim's automatic backup file creation.
+" Some language servers can get confused by backup files
+" Modern development relies on version control (Git) for backup, not Vim's backup system
+set cmdheight=2
+" Makes the command line area 2 lines tall instead of the default 1 line.
+" Helps with COC messages
+set updatetime=300
+" Makes COC feel less sluggish
+
+" Always show the signcolumn
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+"" suggestions and auto-complete
+" suggestions automatically pop-up, use Ctrl-N and Ctrl-P to scroll
+" use tab to select
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() : "\<TAB>"
+" ##################################################################
 
 "c-ctags
 " If using c-tags in vim, to jump to definition, just do Ctrl-]
@@ -99,25 +130,8 @@ lua << EOF
   require'lspconfig'.tsserver.setup{}
 EOF
 
-" ################## Auto-complete ######################3
-set completeopt=menu,menuone,noselect
-
-" Enable completion from various sources
-set complete=.,w,b,u,t,i
-
-" Map Tab to navigate completion menu or trigger completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Optional: Map Ctrl-Space to manually trigger completion
-inoremap <C-Space> <C-n>
-
-" Optional: Auto-trigger completion after typing a certain number of characters
-" This will show completions after typing 2 characters
-set completeopt+=noinsert
-autocmd InsertCharPre * if len(v:char) > 0 | call feedkeys("\<C-n>\<C-p>", 'n') | endif
-
 " ############ Go-to Definition and Finding References #####################################
+" Note this go-to-defintion is powered by the neovim/nvim-lspconfig plug-in!
 
 " In normal mode, when cursor is on top of variable, type K to see type
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
@@ -170,7 +184,8 @@ nmap <silent> <c-p> :GFiles<CR>
 " See this: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt#L1438
 " :ALEInfo to see which linters are currently being used
 " For Ruby to work, need to install rubocop first
-"   gem install rubocop (if it's not already in project Gemfile)
+"   `gem install rubocop` (if it's not already in project Gemfile)
+"
 " For python to work, will need to first install pylint:
 "   pip3 install pylint
 " For Coffeescript to work, first install coffeelint:
