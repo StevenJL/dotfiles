@@ -81,6 +81,13 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'prisma/vim-prisma'
   Plug 'kchmck/vim-coffee-script'
   Plug 'itchyny/lightline.vim'
+  Plug 'hrsh7th/nvim-cmp' " Core completion engine'
+  Plug 'hrsh7th/cmp-nvim-lsp'     " LSP completion
+  Plug 'hrsh7th/cmp-buffer'       " Buffer completion
+  Plug 'hrsh7th/cmp-path'         " Path completion
+  Plug 'hrsh7th/cmp-cmdline'      " Command line completion
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'hrsh7th/vim-vsnip'
   Plug 'neovim/nvim-lspconfig'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
