@@ -90,8 +90,15 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'hrsh7th/vim-vsnip'
   Plug 'neovim/nvim-lspconfig'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'greggh/claude-code.nvim'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
+
+" ##################### Claude AI
+" First run npm install -g @anthropic-ai/claude-code to install the Claude
+" Coding Agent
+luafile ~/.config/nvim/lua/claude-setup.lua
 
 " ################### neoclide/coc.nvim #########################
 " For neoclide/coc.nvim
