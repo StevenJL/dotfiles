@@ -92,6 +92,7 @@ call plug#begin('/Users/stevenli/.config/nvim/autoload')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'nvim-lua/plenary.nvim'
   Plug 'greggh/claude-code.nvim'
+  Plug 'stevearc/aerial.nvim'
 call plug#end()
 " Run :PlugInstall once to install all these plugins
 
@@ -99,6 +100,9 @@ call plug#end()
 " First run npm install -g @anthropic-ai/claude-code to install the Claude
 " Coding Agent
 luafile ~/.config/nvim/lua/claude-setup.lua
+
+" ############################# Aerial
+luafile ~/.config/nvim/lua/aerial-setup.lua
 
 " ################### neoclide/coc.nvim #########################
 " For neoclide/coc.nvim
